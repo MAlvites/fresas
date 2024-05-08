@@ -34,9 +34,9 @@ class CANNode(Node):
 
     def listener_callback(self, msg):
         """Callback function to process received messages."""
-        rpm= msg.data
+        rpm= msg.data.to_bytes(4,byteorder="big",signed="True")
         self.can_msg = can.Message(
-            arbitration_id=self.vesc_id, data=[0x00, 0x00, (rpm>>8)&0xff, rpm&0xff], is_extended_id=True
+            arbitration_id=self.vesc_id, data=rpm, is_extended_id=True
         )
         self.bus.send(self.can_msg)
         try:
