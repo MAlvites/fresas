@@ -31,6 +31,8 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
   src/dc_motor_node.py
+  src/test_can.py
+  src/vesc_can_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
