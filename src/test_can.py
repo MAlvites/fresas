@@ -3,12 +3,14 @@
 import can
 import time
 
-bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
+bus = can.interface.Bus(bustype='slcan', channel='COM8', bitrate=500000)
+rpm=-2000
+num=rpm.to_bytes(4,byteorder="big",signed="True")
 
 def send_one():
     """Sends a single message."""
     msg = can.Message(
-        arbitration_id=0x0357, data=[0x00, 0x00, 0x00, 0x00], is_extended_id=True
+        arbitration_id=0x0357, data=num, is_extended_id=True
     )
     try:
         bus.send(msg)
@@ -25,4 +27,5 @@ def receive_messages():
 if __name__ == "__main__":
     while True:
         send_one()
-        receive_messages()
+        time.sleep(1)
+        #receive_messages()
