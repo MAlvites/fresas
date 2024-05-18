@@ -4,7 +4,7 @@ import can
 import time
 
 bus = can.interface.Bus(bustype='slcan', channel='COM8', bitrate=500000)
-rpm=-2000
+rpm=1000
 num=rpm.to_bytes(4,byteorder="big",signed="True")
 
 def send_one():
