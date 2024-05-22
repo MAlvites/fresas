@@ -16,6 +16,13 @@ CAN_PACKET_SET_CURRENT_BRAKE_REL = 11
 CAN_PACKET_SET_CURRENT_HANDBRAKE = 12
 CAN_PACKET_SET_CURRENT_HANDBRAKE_REL = 13
 
+CAN_PACKET_STATUS = 9
+CAN_PACKET_STATUS_2 = 14
+CAN_PACKET_STATUS_3 = 15
+CAN_PACKET_STATUS_4 = 16
+CAN_PACKET_STATUS_5 = 27
+CAN_PACKET_STATUS_6 = 28
+
 class CANNode(Node):
     def __init__(self):
         super().__init__('can_node')
@@ -24,7 +31,7 @@ class CANNode(Node):
         self.subscription_ = self.create_subscription(
             Int32MultiArray,
             'bldc_motors/rpm',
-            self.listener_callback,
+            self.set_rpm_callback,
             10)
 
         # Publisher to publish received CAN messages
@@ -45,7 +52,7 @@ class CANNode(Node):
         self.receive_thread = threading.Thread(target=self.receive_messages)
         self.receive_thread.start()
 
-    def listener_callback(self, msg):
+    def set_rpm_callback(self, msg):
         """Callback function to process received messages."""
         rpm1 = msg.data[0].to_bytes(4, byteorder="big", signed=True)
         rpm2 = msg.data[1].to_bytes(4, byteorder="big", signed=True)
@@ -71,8 +78,9 @@ class CANNode(Node):
             try:
                 message = self.bus.recv(timeout=1.0)
                 if message is not None:
-                    can_msg = f"ID: {message.arbitration_id}, Data: {message.data.hex()}"
-                    self.get_logger().info(f"Received message: {can_msg}")
+                    can_log_msg = f"ID: {hex(message.arbitration_id)}, Data: {message.data}"
+                    can_msg = f"{hex(message.arbitration_id)},{message.data}"
+                    self.get_logger().info(f"Received message: {can_log_msg}")
                     self.can_publisher_.publish(String(data=can_msg))
             except can.CanError as e:
                 self.get_logger().error(f"CAN Error: {e}")
