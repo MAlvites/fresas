@@ -30,10 +30,10 @@ class CANNode(Node):
         # Publisher to publish received CAN messages
         self.can_publisher_ = self.create_publisher(String, 'can_received_messages', 10)
 
-        self.vesc_id_1 = 0x0357
+        self.vesc_id_1 = 0x0342
         self.vesc_id_2 = 0x0357
-        self.vesc_id_3 = 0x0357
-        self.vesc_id_4 = 0x0357
+        self.vesc_id_3 = 0x0357 ##
+        self.vesc_id_4 = 0x0378
 
         # Initialize CAN bus
         self.bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
@@ -55,15 +55,15 @@ class CANNode(Node):
         self.bus.send(can.Message(
             arbitration_id=self.vesc_id_1, data=rpm1, is_extended_id=True
         ))
-        self.bus.send(can.Message(
-            arbitration_id=self.vesc_id_2, data=rpm2, is_extended_id=True
-        ))
-        self.bus.send(can.Message(
-            arbitration_id=self.vesc_id_3, data=rpm3, is_extended_id=True
-        ))
-        self.bus.send(can.Message(
-            arbitration_id=self.vesc_id_4, data=rpm4, is_extended_id=True
-        ))
+        #self.bus.send(can.Message(
+        #    arbitration_id=self.vesc_id_2, data=rpm2, is_extended_id=True
+        #))
+        #self.bus.send(can.Message(
+        #    arbitration_id=self.vesc_id_3, data=rpm3, is_extended_id=True
+        #))
+        #self.bus.send(can.Message(
+        #    arbitration_id=self.vesc_id_4, data=rpm4, is_extended_id=True
+        #))
 
     def receive_messages(self):
         """Receives messages and publishes them to a ROS topic."""
