@@ -33,6 +33,7 @@ install(PROGRAMS
   src/dc_motor_node.py
   src/test_can.py
   src/vesc_can_node.py
+  src/can_split_message.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
