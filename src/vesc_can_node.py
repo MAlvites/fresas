@@ -23,6 +23,11 @@ CAN_PACKET_STATUS_4 = 16
 CAN_PACKET_STATUS_5 = 27
 CAN_PACKET_STATUS_6 = 28
 
+MOTOR_ID_1 = 0x0342
+MOTOR_ID_2 = 0x0357
+MOTOR_ID_3 = 0x0301 
+MOTOR_ID_4 = 0x0378
+
 class CANNode(Node):
     def __init__(self):
         super().__init__('can_node')
@@ -37,10 +42,10 @@ class CANNode(Node):
         # Publisher to publish received CAN messages
         self.can_publisher_ = self.create_publisher(String, 'can_received_messages', 10)
 
-        self.vesc_id_1 = 0x0342
-        self.vesc_id_2 = 0x0357
-        self.vesc_id_3 = 0x0357 ##
-        self.vesc_id_4 = 0x0378
+        self.vesc_id_1 = MOTOR_ID_1
+        self.vesc_id_2 = MOTOR_ID_2
+        self.vesc_id_3 = MOTOR_ID_3 
+        self.vesc_id_4 = MOTOR_ID_4
 
         # Initialize CAN bus
         self.bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
@@ -78,8 +83,8 @@ class CANNode(Node):
             try:
                 message = self.bus.recv(timeout=1.0)
                 if message is not None:
-                    can_log_msg = f"ID: {hex(message.arbitration_id)}, Data: {message.data}"
-                    can_msg = f"{hex(message.arbitration_id)},{message.data}"
+                    can_log_msg = f"ID: {message.arbitration_id.to_bytes(4, byteorder="big", signed=True).hex()}, Data: {message.data.hex()}"
+                    can_msg = f"{message.arbitration_id.to_bytes(4, byteorder="big", signed=True).hex()},{message.data.hex()}"
                     self.get_logger().info(f"Received message: {can_log_msg}")
                     self.can_publisher_.publish(String(data=can_msg))
             except can.CanError as e:
