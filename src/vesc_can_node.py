@@ -40,7 +40,7 @@ class CANNode(Node):
             10)
 
         # Publisher to publish received CAN messages
-        self.can_publisher_ = self.create_publisher(String, 'can_received_messages', 10)
+        self.can_publisher_ = self.create_publisher(String, 'can_topic', 10)
 
         self.vesc_id_1 = MOTOR_ID_1
         self.vesc_id_2 = MOTOR_ID_2
@@ -64,15 +64,15 @@ class CANNode(Node):
         rpm3 = msg.data[2].to_bytes(4, byteorder="big", signed=True)
         rpm4 = msg.data[3].to_bytes(4, byteorder="big", signed=True)
 
-        self.bus.send(can.Message(
-            arbitration_id=self.vesc_id_1, data=rpm1, is_extended_id=True
-        ))
+        #self.bus.send(can.Message(
+        #    arbitration_id=self.vesc_id_1, data=rpm1, is_extended_id=True
+        #))
         #self.bus.send(can.Message(
         #    arbitration_id=self.vesc_id_2, data=rpm2, is_extended_id=True
         #))
-        #self.bus.send(can.Message(
-        #    arbitration_id=self.vesc_id_3, data=rpm3, is_extended_id=True
-        #))
+        self.bus.send(can.Message(
+            arbitration_id=self.vesc_id_3, data=rpm3, is_extended_id=True
+        ))
         #self.bus.send(can.Message(
         #    arbitration_id=self.vesc_id_4, data=rpm4, is_extended_id=True
         #))
@@ -83,8 +83,8 @@ class CANNode(Node):
             try:
                 message = self.bus.recv(timeout=1.0)
                 if message is not None:
-                    can_log_msg = f"ID: {message.arbitration_id.to_bytes(4, byteorder="big", signed=True).hex()}, Data: {message.data.hex()}"
-                    can_msg = f"{message.arbitration_id.to_bytes(4, byteorder="big", signed=True).hex()},{message.data.hex()}"
+                    can_log_msg = f"ID: {message.arbitration_id.to_bytes(4, byteorder='big', signed=True).hex()}, Data: {message.data.hex()}"
+                    can_msg = f"{message.arbitration_id.to_bytes(4, byteorder='big', signed=True).hex()},{message.data.hex()}"
                     self.get_logger().info(f"Received message: {can_log_msg}")
                     self.can_publisher_.publish(String(data=can_msg))
             except can.CanError as e:
