@@ -31,9 +31,10 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
   src/dc_motor_node.py
-  src/test_can.py
+  src/data_collector.py
   src/vesc_can_node.py
-  src/can_split_message.py
+  src/vesc_can_handler.py
+  src/test_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

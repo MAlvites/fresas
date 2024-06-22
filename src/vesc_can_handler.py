@@ -97,7 +97,6 @@ class CANHandler(Node):
 
         command_id = int.from_bytes(can_id[2:3], "big", signed=True)
         motor_id = int.from_bytes(can_id[3:4], "big", signed=True)
-        print(command_id)
 
         if check_motor_id(motor_id):
             motor = list(motor_ids.keys())[list(motor_ids.values()).index(motor_id)]
