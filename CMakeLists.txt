@@ -21,6 +21,7 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -34,6 +35,7 @@ install(PROGRAMS
   src/data_collector.py
   src/vesc_can_node.py
   src/vesc_can_handler.py
+  src/gamepad_node.py
   src/test_node.py
   DESTINATION lib/${PROJECT_NAME}
 )

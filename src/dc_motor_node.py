@@ -78,7 +78,7 @@ class DCMotorNode(Node):
 
 def main():
     parser = argparse.ArgumentParser(description='DC Motor Node')
-    parser.add_argument('--serial-port', dest='serial_port', type=str, default='/dev/ttyACM0', help='Serial port name (default: /dev/ttyACM0)')
+    parser.add_argument('--serial-port', dest='serial_port', type=str, default='/dev/ttyACM1', help='Serial port name (default: /dev/ttyACM0)')
     args = parser.parse_args()
 
     rclpy.init(args=None)
