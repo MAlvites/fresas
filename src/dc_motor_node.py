@@ -18,19 +18,19 @@ class DCMotorNode(Node):
 
         self.position_subscription = self.create_subscription(
             Int32,
-            'dc_motor_1/position',
+            'position',
             self.position_callback,
             10)
         
         self.rel_position_subscription = self.create_subscription(
             Int32,
-            'dc_motor_1/rel_position',
+            'rel_position',
             self.rel_position_callback,
             10)
         
         self.zero_set_service = self.create_service(
             Empty,
-            'dc_motor_1/zero_set',
+            'zero_set',
             self.zero_set_callback)
 
     def init_serial(self):
