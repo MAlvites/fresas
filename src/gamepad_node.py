@@ -24,7 +24,7 @@ class GamepadControlNode(Node):
         self.prev_motors_state = False
 
         # Initialize serial port
-        #self.serial_port = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port and baud rate as needed
+        self.serial_port = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port and baud rate as needed
 
     def scale_value(self, input_value, input_min, input_max, output_min, output_max):
         # Scale the input_value from the range [input_min, input_max] to [output_min, output_max]
@@ -86,14 +86,13 @@ class GamepadControlNode(Node):
             self.prev_start_button_state = False
 
     def send_character(self, character):
-        "A"
-    #    if self.serial_port.is_open:
-    #        self.serial_port.write(character.encode())  # Send character through serial port
+        if self.serial_port.is_open:
+            self.serial_port.write(character.encode())  # Send character through serial port
 
-    #def __del__(self):
+    def __del__(self):
         # Ensure the serial port is closed when the node is destroyed
-        #if self.serial_port.is_open:
-        #    self.serial_port.close()
+        if self.serial_port.is_open:
+            self.serial_port.close()
 
 def main(args=None):
     rclpy.init(args=args)
