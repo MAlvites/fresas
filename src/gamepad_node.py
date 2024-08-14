@@ -20,8 +20,11 @@ class GamepadControlNode(Node):
         self.var1 = 0
         self.var2 = 0
 
-         # Initialize serial port
-        self.serial_port = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port and baud rate as needed
+        self.prev_start_button_state = False
+        self.prev_motors_state = False
+
+        # Initialize serial port
+        #self.serial_port = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port and baud rate as needed
 
     def scale_value(self, input_value, input_min, input_max, output_min, output_max):
         # Scale the input_value from the range [input_min, input_max] to [output_min, output_max]
@@ -35,7 +38,7 @@ class GamepadControlNode(Node):
         R3_left = msg.axes[2] < -0.5  # Joystick derecho izquierda
         R3_right = msg.axes[2] > 0.5  # Joystick derecho derecha
 
-        X_button_pressed = msg.buttons[2]  # X button
+        start_button_pressed = msg.buttons[9]  # Start button
 
         if R1_pressed:
 
@@ -67,24 +70,30 @@ class GamepadControlNode(Node):
             self.publisher_bldc_rpm.publish(Int32MultiArray(data=[0,0,int(self.var1),0]))
             self.publisher_dc_motor_position.publish(Int32(data=int(self.var2)))
 
-        # Handle X button press for serial communication
-        if X_button_pressed:
-            if not self.prev_x_button_state:
-                self.send_character('A')
-            else:
-                self.send_character('B')
-        
-        # Update previous state of the X button
-        self.prev_x_button_state = X_button_pressed
+        # Handle Start button press for serial communication
+        if start_button_pressed:
+            if not self.prev_start_button_state:
+                if not self.prev_motors_state:
+                    print("A")
+                    self.send_character('A')
+                    self.prev_motors_state = True
+                else:
+                    print("B")
+                    self.send_character('B')
+                    self.prev_motors_state = False
+                self.prev_start_button_state = True
+        else:
+            self.prev_start_button_state = False
 
     def send_character(self, character):
-        if self.serial_port.is_open:
-            self.serial_port.write(character.encode())  # Send character through serial port
+        "A"
+    #    if self.serial_port.is_open:
+    #        self.serial_port.write(character.encode())  # Send character through serial port
 
-    def __del__(self):
+    #def __del__(self):
         # Ensure the serial port is closed when the node is destroyed
-        if self.serial_port.is_open:
-            self.serial_port.close()
+        #if self.serial_port.is_open:
+        #    self.serial_port.close()
 
 def main(args=None):
     rclpy.init(args=args)
