@@ -14,18 +14,15 @@ def generate_launch_description():
 
         Node(
             package='fresas',
-            executable='vesc_can_node',
+            executable='vesc_can_node.py',
             name='vesc_can_node',
-            output='screen',
-            parameters=[{
-                'can_channel': '/dev/ttyACM1'
-            }]
+            output='screen'
         ),
 
 
         Node(
             package='fresas',
-            executable='dc_motor_node',
+            executable='dc_motor_node.py',
             namespace='dc_motor_1',
             name='dc_motor_node',
             output='screen',
@@ -35,7 +32,7 @@ def generate_launch_description():
         ),
         # Node(
         #     package='fresas',
-        #     executable='dc_motor_node',
+        #     executable='dc_motor_node.py',
         #     namespace='dc_motor_2',
         #     name='dc_motor_node',
         #     output='screen',
@@ -45,7 +42,7 @@ def generate_launch_description():
         # ),
         # Node(
         #     package='fresas',
-        #     executable='dc_motor_node',
+        #     executable='dc_motor_node.py',
         #     namespace='dc_motor_3',
         #     name='dc_motor_node',
         #     output='screen',
@@ -55,7 +52,7 @@ def generate_launch_description():
         # ),
         # Node(
         #     package='fresas',
-        #     executable='dc_motor_node',
+        #     executable='dc_motor_node.py',
         #     namespace='dc_motor_4',
         #     name='dc_motor_node',
         #     output='screen',
@@ -67,13 +64,13 @@ def generate_launch_description():
 
         Node(
             package='fresas',
-            executable='vesc_can_handler',
+            executable='vesc_can_handler.py',
             name='vesc_can_handler',
             output='screen',
         ),
         Node(
             package='fresas',
-            executable='gamepad_control_node',
+            executable='gamepad_node.py',
             name='gamepad_control_node',
             output='screen',
         )
