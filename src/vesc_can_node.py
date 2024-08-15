@@ -48,7 +48,7 @@ class CANNode(Node):
         self.vesc_id_4 = MOTOR_ID_4
 
         # Initialize CAN bus
-        self.bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM2', bitrate=500000)
+        self.bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM1', bitrate=500000)
 
         # Flag to control the receive thread
         self.running = True
