@@ -66,12 +66,24 @@ def generate_launch_description():
             package='fresas',
             executable='vesc_can_handler.py',
             name='vesc_can_handler',
-            output='screen',
+            output='screen'
         ),
         Node(
             package='fresas',
             executable='gamepad_node.py',
             name='gamepad_control_node',
+            output='screen'
+        ),
+        Node(
+            package='fresas',
+            executable='motor_state_node.py',
+            name='motor_state_node',
+            output='screen'
+        ),
+        Node(
+            package='fresas',
+            executable='data_logger_node.py',
+            name='data_logger_node',
             output='screen',
         )
     ])

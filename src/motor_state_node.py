@@ -11,6 +11,7 @@ import argparse
 from sensor_msgs.msg import JointState
 from rclpy.node import Node
 from std_msgs.msg import Float32
+from std_srvs.srv import Empty
 from dc_motor_interfaces.msg import MotorState
 from dc_motor_interfaces.msg import MotorStateStamped
 
@@ -21,6 +22,12 @@ class MotorStateReader(Node):
         self.serial_port = None
         self.serial_port_name = serial_port
         self.motor_pub = self.create_publisher(MotorStateStamped, 'dc_motor_state', 1)
+        self.record_flag = False
+        self.record_service = self.create_service(
+            Empty,
+            '/record_data',
+            self.record_service_callback
+        )
         self.init_serial()
 
     def init_serial(self):
@@ -43,52 +50,55 @@ class MotorStateReader(Node):
 
     def correct_position(self):
         while True:
-            try:
-                resultado = self.serial_port.read_until(b'H0')
-                resultado = resultado.decode('utf-8')
-                separador = '/n\n\r'
+            if self.record_flag:
+                try:
+                    resultado = self.serial_port.read_until(b'H0')
+                    resultado = resultado.decode('utf-8')
+                    separador = '/n\n\r'
 
-                division = resultado.split("\n",2)
-                resultado = str(division[2])
+                    division = resultado.split("\n",2)
+                    resultado = str(division[2])
 
-                patron_posicion = r"p(.+)v"
-                p_value = re.search(patron_posicion, resultado)
+                    patron_posicion = r"p(.+)v"
+                    p_value = re.search(patron_posicion, resultado)
 
-                patron_velocidad = r"v(.+)I"
-                v_value = re.search(patron_velocidad, resultado)
+                    patron_velocidad = r"v(.+)I"
+                    v_value = re.search(patron_velocidad, resultado)
 
-                patron_corriente = r"I(.+)E0"
-                i_value = re.search(patron_corriente, resultado)
+                    patron_corriente = r"I(.+)E0"
+                    i_value = re.search(patron_corriente, resultado)
 
-                self.position_real = p_value.group(1)
-                self.velocidad_real = v_value.group(1)
-                self.corriente_real = float(i_value.group(1))/10000
-                
-                """
-                print("--------------------------------------------")
-                print(f'time: {self.get_clock().now().to_msg()}')
-                print(f'preal: {self.position_real}')
-                print(f'velocity: {self.velocidad_real}')
-                print(f'current: {self.corriente_real}')
-                """
+                    self.position_real = p_value.group(1)
+                    self.velocidad_real = v_value.group(1)
+                    self.corriente_real = float(i_value.group(1))/10000
+                    
+                    """
+                    print("--------------------------------------------")
+                    print(f'time: {self.get_clock().now().to_msg()}')
+                    print(f'preal: {self.position_real}')
+                    print(f'velocity: {self.velocidad_real}')
+                    print(f'current: {self.corriente_real}')
+                    """
 
-                msg_state = MotorState() 
-                msg_state.position = float(self.position_real)
-                msg_state.velocity = float(self.velocidad_real)
-                msg_state.current = float(self.corriente_real)
-
-
-                msg_stamped = MotorStateStamped()
-                msg_stamped.header.stamp = self.get_clock().now().to_msg()
-                msg_stamped.header.frame_id = "base_link"
-                msg_stamped.state = msg_state
-
-                self.motor_pub.publish(msg_stamped)
-
-            except IndexError:
-                print("errrorrrr")
+                    msg_state = MotorState() 
+                    msg_state.position = float(self.position_real)
+                    msg_state.velocity = float(self.velocidad_real)
+                    msg_state.current = float(self.corriente_real)
 
 
+                    msg_stamped = MotorStateStamped()
+                    msg_stamped.header.stamp = self.get_clock().now().to_msg()
+                    msg_stamped.header.frame_id = "base_link"
+                    msg_stamped.state = msg_state
+
+                    self.motor_pub.publish(msg_stamped)
+
+                except IndexError:
+                    print("errrorrrr")
+
+    def record_service_callback(self, request, response):
+        self.record_flag = not self.record_flag
+        return response
 
 def main(args=None):
     parser = argparse.ArgumentParser(description='DC Motor Node')
