@@ -64,7 +64,7 @@ class DCMotorNode(Node):
     def position_callback(self, msg):
         try:
             position = msg.data
-            command = f"N24 p{position} v100/n"
+            command = f"N24 p{position} v100/n O G3/n"
             self.serial_port_instance.write(command.encode())
         except serial.SerialException as e:
             self.get_logger().error(f'Error communicating with motor: {e}')
