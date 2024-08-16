@@ -37,6 +37,8 @@ install(PROGRAMS
   src/vesc_can_handler.py
   src/gamepad_node.py
   src/test_node.py
+  src/data_logger_node.py
+  src/motor_state_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
