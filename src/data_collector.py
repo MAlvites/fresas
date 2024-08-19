@@ -3,6 +3,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String, Int32MultiArray
+from std_srvs.srv import Empty
 import csv
 import time
 
@@ -30,8 +31,16 @@ class DataCollector(Node):
             self.rpm_setpoint_callback,
             10)
 
+        self.record_flag = False
+
+        self.record_service = self.create_service(
+            Empty,
+            'record_bldc_data',
+            self.record_service_callback
+        )
+
         # Timer to check for data and save periodically
-        self.create_timer(5.0, self.check_and_save)
+        self.create_timer(1.0, self.check_and_save)
 
         # Initialize the file with headers
         with open('can_data.csv', 'w', newline='') as csvfile:
@@ -62,8 +71,9 @@ class DataCollector(Node):
             self.get_logger().error(f"Error in RPM callback: {e}")
 
     def check_and_save(self):
-        if self.time_stamps_can or self.time_stamps_rpm:
-            self.save_data()
+        if self.record_flag:
+            if self.time_stamps_can or self.time_stamps_rpm:
+                self.save_data()
 
     def save_data(self):
         if not self.time_stamps_can and not self.time_stamps_rpm:
@@ -90,6 +100,11 @@ class DataCollector(Node):
         self.can_data.clear()
         self.time_stamps_rpm.clear()
         self.rpm_setpoint.clear()
+
+    def record_service_callback(self, request, response):
+        self.get_logger().info("Here")
+        self.record_flag = not self.record_flag
+        return response
 
 def main(args=None):
     rclpy.init(args=args)

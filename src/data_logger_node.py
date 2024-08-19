@@ -25,12 +25,6 @@ class MotorStateLogger(Node):
             writer = csv.writer(file)
             writer.writerow(['Timestamp', 'Position (rad)', 'Velocity (rad/s)',  'Current (A)'])
         self.pose_subscriber_ = self.create_subscription(MotorStateStamped, 'dc_motor_state', self.obtain_data,1)
-        self.record_flag = False
-        self.record_service = self.create_service(
-            Empty,
-            '/record_data',
-            self.record_service_callback
-        )
 
     def obtain_data(self, msg = MotorStateStamped):
         self.time = timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
@@ -40,17 +34,12 @@ class MotorStateLogger(Node):
         self.current = msg.state.current
     
         try:
-            if self.record_flag:
-                with open(self.nombre_archivo, mode='a', newline='') as file:
-                    writer = csv.writer(file)
-                    writer.writerow([timestamp, self.position, self.velocity, self.current])
+            with open(self.nombre_archivo, mode='a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([timestamp, self.position, self.velocity, self.current])
 
         except KeyboardInterrupt:
             print("Detenido.")
-
-    def record_service_callback(self, request, response):
-        self.record_flag = not self.record_flag
-        return response
 
 def main(args=None):
     rclpy.init(args=args)

@@ -36,12 +36,19 @@ class GamepadControlNode(Node):
             #self.create_client(Empty, '/dc_motor_3/clear_errors'),
             #self.create_client(Empty, '/dc_motor_4/clear_errors')
         ]
-        self.record_client = self.create_client(Empty,'/record_data')
+        self.record_dc_client = self.create_client(Empty,'record_dc_data')
+        self.record_bldc_client =  self.create_client(Empty,'record_bldc_data')
 
         # Wait for all services to become available
         for i, client in enumerate(self.clear_errors_clients):
             while not client.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info(f'Waiting for clear_errors service {i+1} to become available...')
+        while not self.record_dc_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Waiting for /record_dc_data service to become available...')
+        while not self.record_bldc_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Waiting for /record_bldc_data service to become available...')
+        
+
 
     def scale_value(self, input_value, input_min, input_max, output_min, output_max):
         # Scale the input_value from the range [input_min, input_max] to [output_min, output_max]
@@ -95,7 +102,8 @@ class GamepadControlNode(Node):
         #Handle Select button press for recording of data
         if select_button_pressed:
             if not self.prev_select_button_state:
-                self.call_record_service()
+                self.call_record_dc_service()
+                self.call_record_bldc_service()
                 self.prev_select_button_state = True
         else:
             self.prev_select_button_state = False
@@ -116,11 +124,15 @@ class GamepadControlNode(Node):
             self.get_logger().info(f'Calling clear_errors service for motor {i+1}...')
             client.call_async(request)
 
-    def call_record_service(self):
-        # Call clear_errors service for each motor    
+    def call_record_dc_service(self):   
         request = Empty.Request()
         self.get_logger().info(f'Calling record service')
-        self.record_client.call_async(request)
+        self.record_dc_client.call_async(request)
+
+    def call_record_bldc_service(self):   
+        request = Empty.Request()
+        self.get_logger().info(f'Calling record service')
+        self.record_bldc_client.call_async(request)
     
     def __del__(self):
         # Ensure the serial port is closed when the node is destroyed

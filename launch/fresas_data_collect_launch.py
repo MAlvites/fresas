@@ -78,12 +78,21 @@ def generate_launch_description():
             package='fresas',
             executable='motor_state_node.py',
             name='motor_state_node',
-            output='screen'
+            output='screen',
+            parameters=[{
+                'serial_port': '/dev/ttyACM2'
+            }]
         ),
         Node(
             package='fresas',
             executable='data_logger_node.py',
             name='data_logger_node',
+            output='screen',
+        ),
+        Node(
+            package='fresas',
+            executable='data_collector.py',
+            name='data_collector_node',
             output='screen',
         )
     ])

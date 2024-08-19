@@ -85,7 +85,7 @@ class CANNode(Node):
                 if message is not None:
                     can_log_msg = f"ID: {message.arbitration_id.to_bytes(4, byteorder='big', signed=True).hex()}, Data: {message.data.hex()}"
                     can_msg = f"{message.arbitration_id.to_bytes(4, byteorder='big', signed=True).hex()},{message.data.hex()}"
-                    self.get_logger().info(f"Received message: {can_log_msg}")
+                    #self.get_logger().info(f"Received message: {can_log_msg}")
                     self.can_publisher_.publish(String(data=can_msg))
             except can.CanError as e:
                 self.get_logger().error(f"CAN Error: {e}")
