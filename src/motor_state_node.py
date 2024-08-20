@@ -10,6 +10,7 @@ import argparse
 
 from sensor_msgs.msg import JointState
 from rclpy.node import Node
+from std_msgs.msg import Int32
 from std_msgs.msg import Float32
 from std_srvs.srv import Empty
 from dc_motor_interfaces.msg import MotorState
@@ -26,21 +27,20 @@ class MotorStateReader(Node):
         # Get the parameter value
         serial_port = self.get_parameter('serial_port').get_parameter_value().string_value
 
-        self.record_flag = False
-
         self.motor_pub = self.create_publisher(MotorStateStamped, 'dc_motor_state', 1)
-                                               
-        self.record_service = self.create_service(
-            Empty,
-            'record_dc_data',
-            self.record_service_callback
+
+        self.position_subscription = self.create_subscription(
+            Int32,
+            '/dc_motor_1/position',
+            self.position_callback,
+            10
         )
 
         # Initialize serial port
         self.init_serial(serial_port)
 
         # Create a timer that triggers the correct_position method every 0.1 seconds
-        self.timer = self.create_timer(1, self.correct_position)
+        #self.timer = self.create_timer(1, self.correct_position)
 
     def init_serial(self, serial_port):
         try:
@@ -60,48 +60,48 @@ class MotorStateReader(Node):
     
 
     def correct_position(self):
-        if self.record_flag:
-            try:
-                self.get_logger().info("Recording")
-                resultado = self.serial_port_instance.read_until(b'H0')
-                resultado = resultado.decode('utf-8')
+        try:
+            resultado = self.serial_port_instance.read_until(b'H0')
+            resultado = resultado.decode('utf-8')
+            separador = '/n\n\r'
 
-                division = resultado.split("\n", 2)
-                resultado = str(division[2])
+            division = resultado.split("\n",2)
+            resultado = str(division[2])
 
-                patron_posicion = r"p(.+)v"
-                p_value = re.search(patron_posicion, resultado)
+            patron_posicion = r"p(.+)v"
+            p_value = re.search(patron_posicion, resultado)
 
-                patron_velocidad = r"v(.+)I"
-                v_value = re.search(patron_velocidad, resultado)
+            patron_velocidad = r"v(.+)I"
+            v_value = re.search(patron_velocidad, resultado)
 
-                patron_corriente = r"I(.+)E0"
-                i_value = re.search(patron_corriente, resultado)
+            patron_corriente = r"I(.+)E0"
+            i_value = re.search(patron_corriente, resultado)
 
-                self.position_real = p_value.group(1)
-                self.velocidad_real = v_value.group(1)
+            self.position_real = p_value.group(1)
+            self.velocidad_real = v_value.group(1)
+            
+            if i_value is not None:
                 self.corriente_real = float(i_value.group(1)) / 10000
+            else:
+                self.corriente_real = 0.0
 
-                msg_state = MotorState()
-                msg_state.position = float(self.position_real)
-                msg_state.velocity = float(self.velocidad_real)
-                msg_state.current = float(self.corriente_real)
+            msg_state = MotorState()
+            msg_state.position = float(self.position_real)
+            msg_state.velocity = float(self.velocidad_real)
+            msg_state.current = float(self.corriente_real)
 
-                msg_stamped = MotorStateStamped()
-                msg_stamped.header.stamp = self.get_clock().now().to_msg()
-                msg_stamped.header.frame_id = "base_link"
-                msg_stamped.state = msg_state
+            msg_stamped = MotorStateStamped()
+            msg_stamped.header.stamp = self.get_clock().now().to_msg()
+            msg_stamped.header.frame_id = "base_link"
+            msg_stamped.state = msg_state
 
-                self.motor_pub.publish(msg_stamped)
+            self.motor_pub.publish(msg_stamped)
 
-            except IndexError:
-                self.get_logger().error("errorr")
+        except IndexError:
+            self.get_logger().error("errorr")
 
-
-    def record_service_callback(self, request, response):
-        self.get_logger().info("Here")
-        self.record_flag = not self.record_flag
-        return response
+    def position_callback(self, msg):
+        self.correct_position()
 
 def main(args=None):
     """

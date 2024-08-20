@@ -81,7 +81,7 @@ class GamepadControlNode(Node):
             elif self.var2 < -675:
                 self.var2 = -675
 
-            self.publisher_bldc_rpm.publish(Int32MultiArray(data=[0, 0, int(self.var1), 0]))
+        self.publisher_bldc_rpm.publish(Int32MultiArray(data=[0, 0, int(self.var1), 0]))
         self.publisher_dc_motor_position.publish(Int32(data=int(self.var2)))
 
         # Handle Start button press for serial communication

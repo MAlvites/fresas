@@ -39,9 +39,6 @@ class DataCollector(Node):
             self.record_service_callback
         )
 
-        # Timer to check for data and save periodically
-        self.create_timer(1.0, self.check_and_save)
-
         # Initialize the file with headers
         with open('can_data.csv', 'w', newline='') as csvfile:
             fieldnames = ['timestamp', 'rpm_setpoint', 'rpm', 'current', 'battery']
@@ -50,30 +47,31 @@ class DataCollector(Node):
 
     def can_callback(self, msg):
         try:
-            current_time = time.time()
-            rpm_can = extract_rpm_can(msg.data)
-            current_can = extract_current_can(msg.data)
-            battery_can = extract_battery_can(msg.data)
-            if rpm_can is not None and battery_can is not None and current_can is not None:
-                self.time_stamps_can.append(current_time)
-                self.can_data.append((rpm_can, current_can, battery_can))
-                self.get_logger().info(f"Received CAN message at {current_time}: RPM={rpm_can}, Current={current_can}, Battery={battery_can}")
+            if self.record_flag:
+                self.get_logger().info("Recording")
+                current_time = time.time()
+                rpm_can = extract_rpm_can(msg.data)
+                current_can = extract_current_can(msg.data)
+                battery_can = extract_battery_can(msg.data)
+                if rpm_can != "nan" or current_can != "nan" or battery_can != "nan":
+                    self.time_stamps_can.append(current_time)
+                    self.can_data.append((rpm_can, current_can, battery_can))
+                    self.get_logger().info(f"Received CAN message at {current_time}: RPM={rpm_can}, Current={current_can}, Battery={battery_can}")
+                self.save_data()
         except Exception as e:
             self.get_logger().error(f"Error in CAN callback: {e}")
 
     def rpm_setpoint_callback(self, msg):
         try:
-            current_time = time.time()
-            self.time_stamps_rpm.append(current_time)
-            self.rpm_setpoint.append(msg.data[2])
-            self.get_logger().info(f"Received RPM message at {current_time}: {msg.data}")
+            if self.record_flag:
+                self.get_logger().info("Recording")
+                current_time = time.time()
+                self.time_stamps_rpm.append(current_time)
+                self.rpm_setpoint.append(msg.data[2])
+                #self.get_logger().info(f"Received RPM message at {current_time}: {msg.data}")
+                self.save_data()
         except Exception as e:
             self.get_logger().error(f"Error in RPM callback: {e}")
-
-    def check_and_save(self):
-        if self.record_flag:
-            if self.time_stamps_can or self.time_stamps_rpm:
-                self.save_data()
 
     def save_data(self):
         if not self.time_stamps_can and not self.time_stamps_rpm:
@@ -102,7 +100,6 @@ class DataCollector(Node):
         self.rpm_setpoint.clear()
 
     def record_service_callback(self, request, response):
-        self.get_logger().info("Here")
         self.record_flag = not self.record_flag
         return response
 
@@ -132,7 +129,7 @@ def extract_rpm_can(can_msg):
     except Exception as e:
         print(f"Error extracting RPM from CAN message: {e}")
 
-    return None
+    return "nan"
 
 def extract_current_can(can_msg):
     try:
@@ -142,12 +139,12 @@ def extract_current_can(can_msg):
         motor_id = int.from_bytes(bytes.fromhex(msg_list[0])[3:4], "big", signed=True)
 
         if motor_id == 0x0001 and command_id == 9:
-            current = int.from_bytes(can_data[4:5], "big", signed=True)*10
+            current = int.from_bytes(can_data[4:6], "big", signed=True)/10.0
             return current
     except Exception as e:
         print(f"Error extracting RPM from CAN message: {e}")
 
-    return None
+    return "nan"
 
 def extract_battery_can(can_msg):
     try:
@@ -157,12 +154,12 @@ def extract_battery_can(can_msg):
         motor_id = int.from_bytes(bytes.fromhex(msg_list[0])[3:4], "big", signed=True)
 
         if motor_id == 0x0001 and command_id == 27:
-            battery = int.from_bytes(can_data[4:5], "big", signed=True)*10
+            battery = int.from_bytes(can_data[4:6], "big", signed=True)/10.0
             return battery
     except Exception as e:
         print(f"Error extracting RPM from CAN message: {e}")
 
-    return None
+    return "nan"
 
 if __name__ == '__main__':
     main()
