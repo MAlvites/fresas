@@ -1,0 +1,128 @@
+[0.000000] (-) TimerEvent: {}
+[0.000140] (fresas) JobQueued: {'identifier': 'fresas', 'dependencies': OrderedDict()}
+[0.000689] (fresas) JobStarted: {'identifier': 'fresas'}
+[0.011792] (fresas) JobProgress: {'identifier': 'fresas', 'progress': 'cmake'}
+[0.012382] (fresas) Command: {'cmd': ['/usr/bin/cmake', '/home/siba/ros2_ws/src/fresas', '-DCMAKE_INSTALL_PREFIX=/home/siba/ros2_ws/src/fresas/install/fresas'], 'cwd': '/home/siba/ros2_ws/src/fresas/build/fresas', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'siba'), ('SSH_CLIENT', '10.100.218.195 49923 22'), ('LC_TIME', 'es_PE.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/siba'), ('OLDPWD', '/home/siba/ros2_ws/src/fresas/src'), ('SSH_TTY', '/dev/pts/5'), ('ROS_PYTHON_VERSION', '3'), ('LC_MONETARY', 'es_PE.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('_colcon_cd_root', '/opt/ros/foxy/'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'siba'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm'), ('XDG_SESSION_ID', '20'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/siba/.local/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'es_PE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:13.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'es_PE.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_PE.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_PE.UTF-8'), ('LC_IDENTIFICATION', 'es_PE.UTF-8'), ('PWD', '/home/siba/ros2_ws/src/fresas/build/fresas'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '10.100.218.195 49923 10.100.129.69 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'es_PE.UTF-8'), ('LC_PAPER', 'es_PE.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.099730] (-) TimerEvent: {}
+[0.194732] (fresas) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.199757] (-) TimerEvent: {}
+[0.300221] (-) TimerEvent: {}
+[0.400786] (-) TimerEvent: {}
+[0.443002] (fresas) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.449127] (fresas) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.500895] (-) TimerEvent: {}
+[0.539020] (fresas) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.540488] (fresas) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.601030] (-) TimerEvent: {}
+[0.629791] (fresas) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.643777] (fresas) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.644371] (fresas) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.647470] (fresas) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.701170] (-) TimerEvent: {}
+[0.748469] (fresas) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.749847] (fresas) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.801282] (-) TimerEvent: {}
+[0.851507] (fresas) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.865177] (fresas) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.865852] (fresas) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.868517] (fresas) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.896339] (fresas) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.896719] (fresas) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.901406] (-) TimerEvent: {}
+[1.001697] (-) TimerEvent: {}
+[1.102005] (-) TimerEvent: {}
+[1.131681] (fresas) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[1.192998] (fresas) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.200840] (fresas) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[1.202104] (-) TimerEvent: {}
+[1.302512] (-) TimerEvent: {}
+[1.305813] (fresas) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[1.341440] (fresas) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[1.402665] (-) TimerEvent: {}
+[1.437020] (fresas) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.502755] (-) TimerEvent: {}
+[1.507916] (fresas) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[1.509653] (fresas) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.513125] (fresas) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.602879] (-) TimerEvent: {}
+[1.611847] (fresas) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.612224] (fresas) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.702995] (-) TimerEvent: {}
+[1.706340] (fresas) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[1.706563] (fresas) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[1.783139] (fresas) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[1.783388] (fresas) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[1.803083] (-) TimerEvent: {}
+[1.871471] (fresas) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[1.872929] (fresas) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.903225] (-) TimerEvent: {}
+[2.003527] (-) TimerEvent: {}
+[2.060741] (fresas) StdoutLine: {'line': b'-- Found rclpy: 1.0.13 (/opt/ros/foxy/share/rclpy/cmake)\n'}
+[2.062305] (fresas) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[2.103666] (-) TimerEvent: {}
+[2.203971] (-) TimerEvent: {}
+[2.209940] (fresas) StdoutLine: {'line': b'-- Found std_srvs: 2.0.5 (/opt/ros/foxy/share/std_srvs/cmake)\n'}
+[2.253527] (fresas) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[2.304099] (-) TimerEvent: {}
+[2.388222] (fresas) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.404213] (-) TimerEvent: {}
+[2.418474] (fresas) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.418862] (fresas) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[2.418957] (fresas) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.448514] (fresas) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[2.448699] (fresas) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[2.453308] (fresas) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[2.461940] (fresas) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.466374] (fresas) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[2.496415] (fresas) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[2.496600] (fresas) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.501046] (fresas) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.504287] (-) TimerEvent: {}
+[2.506329] (fresas) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.509268] (fresas) StdoutLine: {'line': b'-- Generating done\n'}
+[2.511262] (fresas) StdoutLine: {'line': b'-- Build files have been written to: /home/siba/ros2_ws/src/fresas/build/fresas\n'}
+[2.521035] (fresas) CommandEnded: {'returncode': 0}
+[2.521983] (fresas) JobProgress: {'identifier': 'fresas', 'progress': 'build'}
+[2.524588] (fresas) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/siba/ros2_ws/src/fresas/build/fresas', '--', '-j4', '-l4'], 'cwd': '/home/siba/ros2_ws/src/fresas/build/fresas', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'siba'), ('SSH_CLIENT', '10.100.218.195 49923 22'), ('LC_TIME', 'es_PE.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/siba'), ('OLDPWD', '/home/siba/ros2_ws/src/fresas/src'), ('SSH_TTY', '/dev/pts/5'), ('ROS_PYTHON_VERSION', '3'), ('LC_MONETARY', 'es_PE.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('_colcon_cd_root', '/opt/ros/foxy/'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'siba'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm'), ('XDG_SESSION_ID', '20'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/siba/.local/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'es_PE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:13.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'es_PE.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_PE.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_PE.UTF-8'), ('LC_IDENTIFICATION', 'es_PE.UTF-8'), ('PWD', '/home/siba/ros2_ws/src/fresas/build/fresas'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '10.100.218.195 49923 10.100.129.69 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'es_PE.UTF-8'), ('LC_PAPER', 'es_PE.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[2.578798] (fresas) CommandEnded: {'returncode': 0}
+[2.604479] (-) TimerEvent: {}
+[2.605766] (fresas) JobProgress: {'identifier': 'fresas', 'progress': 'install'}
+[2.621251] (fresas) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/siba/ros2_ws/src/fresas/build/fresas'], 'cwd': '/home/siba/ros2_ws/src/fresas/build/fresas', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'siba'), ('SSH_CLIENT', '10.100.218.195 49923 22'), ('LC_TIME', 'es_PE.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/siba'), ('OLDPWD', '/home/siba/ros2_ws/src/fresas/src'), ('SSH_TTY', '/dev/pts/5'), ('ROS_PYTHON_VERSION', '3'), ('LC_MONETARY', 'es_PE.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('_colcon_cd_root', '/opt/ros/foxy/'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'siba'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm'), ('XDG_SESSION_ID', '20'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/siba/.local/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'es_PE.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:13.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'es_PE.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_PE.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_PE.UTF-8'), ('LC_IDENTIFICATION', 'es_PE.UTF-8'), ('PWD', '/home/siba/ros2_ws/src/fresas/build/fresas'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '10.100.218.195 49923 10.100.129.69 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'es_PE.UTF-8'), ('LC_PAPER', 'es_PE.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[2.633376] (fresas) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.633648] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/pythonpath.sh\n'}
+[2.633816] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/pythonpath.dsv\n'}
+[2.633951] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas\n'}
+[2.634133] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas/__init__.py\n'}
+[2.668902] (fresas) StdoutLine: {'line': b"Listing '/home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas'...\n"}
+[2.669125] (fresas) StdoutLine: {'line': b"Compiling '/home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas/__init__.py'...\n"}
+[2.673684] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/dc_motor_node.py\n'}
+[2.674106] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/data_collector.py\n'}
+[2.674439] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/vesc_can_node.py\n'}
+[2.674670] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/vesc_can_handler.py\n'}
+[2.674933] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/gamepad_node.py\n'}
+[2.675160] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/test_node.py\n'}
+[2.675415] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/data_logger_node.py\n'}
+[2.675581] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/motor_state_node.py\n'}
+[2.675846] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/step_signal.py\n'}
+[2.676158] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas//launch\n'}
+[2.676304] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas//launch/fresas_data_collect_launch.py\n'}
+[2.676495] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas//launch/fresas_launch.py\n'}
+[2.676644] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/ament_index/resource_index/package_run_dependencies/fresas\n'}
+[2.676838] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/ament_index/resource_index/parent_prefix_path/fresas\n'}
+[2.677069] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/ament_prefix_path.sh\n'}
+[2.677377] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/ament_prefix_path.dsv\n'}
+[2.677642] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/path.sh\n'}
+[2.677888] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/path.dsv\n'}
+[2.678192] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.bash\n'}
+[2.678447] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.sh\n'}
+[2.678700] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.zsh\n'}
+[2.679021] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.dsv\n'}
+[2.679282] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/package.dsv\n'}
+[2.679606] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/ament_index/resource_index/packages/fresas\n'}
+[2.679917] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/cmake/fresasConfig.cmake\n'}
+[2.680264] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/cmake/fresasConfig-version.cmake\n'}
+[2.680595] (fresas) StdoutLine: {'line': b'-- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/package.xml\n'}
+[2.683046] (fresas) CommandEnded: {'returncode': 0}
+[2.704626] (-) TimerEvent: {}
+[2.735524] (fresas) JobEnded: {'identifier': 'fresas', 'rc': 0}
+[2.736553] (-) EventReactorShutdown: {}

@@ -39,6 +39,7 @@ install(PROGRAMS
   src/test_node.py
   src/data_logger_node.py
   src/motor_state_node.py
+  src/step_signal.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

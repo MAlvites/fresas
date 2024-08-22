@@ -1,0 +1,11 @@
+source;share/fresas/hook/cmake_prefix_path.ps1
+source;share/fresas/hook/cmake_prefix_path.dsv
+source;share/fresas/hook/cmake_prefix_path.sh
+source;share/fresas/hook/pythonpath.ps1
+source;share/fresas/hook/pythonpath.dsv
+source;share/fresas/hook/pythonpath.sh
+source;share/fresas/local_setup.bash
+source;share/fresas/local_setup.dsv
+source;share/fresas/local_setup.ps1
+source;share/fresas/local_setup.sh
+source;share/fresas/local_setup.zsh

@@ -1,0 +1,3 @@
+source;share/fresas/environment/ament_prefix_path.sh
+source;share/fresas/environment/path.sh
+source;share/fresas/environment/pythonpath.sh

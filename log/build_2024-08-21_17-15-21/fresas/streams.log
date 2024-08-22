@@ -1,0 +1,93 @@
+[0.014s] Invoking command in '/home/siba/ros2_ws/src/fresas/build/fresas': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/siba/ros2_ws/src/fresas -DCMAKE_INSTALL_PREFIX=/home/siba/ros2_ws/src/fresas/install/fresas
+[0.194s] -- The C compiler identification is GNU 9.4.0
+[0.442s] -- The CXX compiler identification is GNU 9.4.0
+[0.449s] -- Check for working C compiler: /usr/bin/cc
+[0.538s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.540s] -- Detecting C compiler ABI info
+[0.629s] -- Detecting C compiler ABI info - done
+[0.643s] -- Detecting C compile features
+[0.644s] -- Detecting C compile features - done
+[0.647s] -- Check for working CXX compiler: /usr/bin/c++
+[0.748s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.749s] -- Detecting CXX compiler ABI info
+[0.851s] -- Detecting CXX compiler ABI info - done
+[0.865s] -- Detecting CXX compile features
+[0.865s] -- Detecting CXX compile features - done
+[0.868s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.896s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.896s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.131s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.192s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.200s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.305s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.341s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.436s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.507s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.509s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.513s] -- Looking for pthread.h
+[1.611s] -- Looking for pthread.h - found
+[1.612s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.706s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.706s] -- Looking for pthread_create in pthreads
+[1.783s] -- Looking for pthread_create in pthreads - not found
+[1.783s] -- Looking for pthread_create in pthread
+[1.871s] -- Looking for pthread_create in pthread - found
+[1.872s] -- Found Threads: TRUE  
+[2.060s] -- Found rclpy: 1.0.13 (/opt/ros/foxy/share/rclpy/cmake)
+[2.062s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[2.209s] -- Found std_srvs: 2.0.5 (/opt/ros/foxy/share/std_srvs/cmake)
+[2.253s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.388s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.418s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.418s] -- Configured cppcheck include dirs: 
+[2.418s] -- Configured cppcheck exclude dirs and/or files: 
+[2.448s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[2.448s] -- Configured cpplint exclude dirs and/or files: 
+[2.453s] -- Added test 'flake8' to check Python code syntax and style conventions
+[2.461s] -- Added test 'lint_cmake' to check CMake code style
+[2.466s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[2.496s] -- Added test 'uncrustify' to check C / C++ code style
+[2.496s] -- Configured uncrustify additional arguments: 
+[2.500s] -- Added test 'xmllint' to check XML markup files
+[2.506s] -- Configuring done
+[2.509s] -- Generating done
+[2.511s] -- Build files have been written to: /home/siba/ros2_ws/src/fresas/build/fresas
+[2.521s] Invoked command in '/home/siba/ros2_ws/src/fresas/build/fresas' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/siba/ros2_ws/src/fresas -DCMAKE_INSTALL_PREFIX=/home/siba/ros2_ws/src/fresas/install/fresas
+[2.525s] Invoking command in '/home/siba/ros2_ws/src/fresas/build/fresas': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/siba/ros2_ws/src/fresas/build/fresas -- -j4 -l4
+[2.578s] Invoked command in '/home/siba/ros2_ws/src/fresas/build/fresas' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/siba/ros2_ws/src/fresas/build/fresas -- -j4 -l4
+[2.622s] Invoking command in '/home/siba/ros2_ws/src/fresas/build/fresas': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/siba/ros2_ws/src/fresas/build/fresas
+[2.633s] -- Install configuration: ""
+[2.633s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/pythonpath.sh
+[2.633s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/pythonpath.dsv
+[2.633s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas
+[2.634s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas/__init__.py
+[2.668s] Listing '/home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas'...
+[2.668s] Compiling '/home/siba/ros2_ws/src/fresas/install/fresas/lib/python3.8/site-packages/fresas/__init__.py'...
+[2.673s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/dc_motor_node.py
+[2.674s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/data_collector.py
+[2.674s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/vesc_can_node.py
+[2.674s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/vesc_can_handler.py
+[2.674s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/gamepad_node.py
+[2.675s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/test_node.py
+[2.675s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/data_logger_node.py
+[2.675s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/motor_state_node.py
+[2.675s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/lib/fresas/step_signal.py
+[2.676s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas//launch
+[2.676s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas//launch/fresas_data_collect_launch.py
+[2.676s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas//launch/fresas_launch.py
+[2.676s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/ament_index/resource_index/package_run_dependencies/fresas
+[2.676s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/ament_index/resource_index/parent_prefix_path/fresas
+[2.676s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/ament_prefix_path.sh
+[2.677s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/ament_prefix_path.dsv
+[2.677s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/path.sh
+[2.677s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/environment/path.dsv
+[2.678s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.bash
+[2.678s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.sh
+[2.678s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.zsh
+[2.678s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/local_setup.dsv
+[2.679s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/package.dsv
+[2.679s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/ament_index/resource_index/packages/fresas
+[2.679s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/cmake/fresasConfig.cmake
+[2.680s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/cmake/fresasConfig-version.cmake
+[2.680s] -- Installing: /home/siba/ros2_ws/src/fresas/install/fresas/share/fresas/package.xml
+[2.683s] Invoked command in '/home/siba/ros2_ws/src/fresas/build/fresas' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/siba/ros2_ws/src/fresas/build/fresas
