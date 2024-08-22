@@ -18,6 +18,15 @@ class DataCollector(Node):
         self.time_stamps_can = []
         self.can_data = []
 
+        #Recording flag
+        self.record_flag = False
+
+        # Initialize the file with headers
+        with open('can_data.csv', 'w', newline='') as csvfile:
+            fieldnames = ['timestamp', 'rpm_setpoint', 'rpm', 'current', 'battery']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+
         # Subscriptions
         self.subscription_can = self.create_subscription(
             String,
@@ -31,19 +40,11 @@ class DataCollector(Node):
             self.rpm_setpoint_callback,
             10)
 
-        self.record_flag = False
-
         self.record_service = self.create_service(
             Empty,
             'record_bldc_data',
             self.record_service_callback
         )
-
-        # Initialize the file with headers
-        with open('can_data.csv', 'w', newline='') as csvfile:
-            fieldnames = ['timestamp', 'rpm_setpoint', 'rpm', 'current', 'battery']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
 
     def can_callback(self, msg):
         try:

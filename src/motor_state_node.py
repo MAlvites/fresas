@@ -29,18 +29,15 @@ class MotorStateReader(Node):
 
         self.motor_pub = self.create_publisher(MotorStateStamped, 'dc_motor_state', 1)
 
+        # Initialize serial port
+        self.init_serial(serial_port)
+
         self.position_subscription = self.create_subscription(
             Int32,
             '/dc_motor_1/position',
             self.position_callback,
             10
         )
-
-        # Initialize serial port
-        self.init_serial(serial_port)
-
-        # Create a timer that triggers the correct_position method every 0.1 seconds
-        #self.timer = self.create_timer(1, self.correct_position)
 
     def init_serial(self, serial_port):
         try:
@@ -53,7 +50,6 @@ class MotorStateReader(Node):
             )
             time.sleep(1)  # Esperar a que el puerto se inicialice
             self.get_logger().info('UART initialized for DC motor on port: %s' % serial_port)
-            self.get_logger().info('Leyendo datos del motor ...')
         except serial.SerialException as e:
             self.get_logger().error('Error initializing UART: %s' % str(e))
             raise e

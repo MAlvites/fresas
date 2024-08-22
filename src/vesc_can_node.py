@@ -32,30 +32,30 @@ class CANNode(Node):
     def __init__(self):
         super().__init__('can_node')
 
-        # Subscription to listen to RPM messages
-        self.subscription_ = self.create_subscription(
-            Int32MultiArray,
-            'bldc_motors/rpm',
-            self.set_rpm_callback,
-            10)
-
-        # Publisher to publish received CAN messages
-        self.can_publisher_ = self.create_publisher(String, 'can_topic', 10)
+        # Flag to control the receive thread
+        self.running = True
 
         self.vesc_id_1 = MOTOR_ID_1
         self.vesc_id_2 = MOTOR_ID_2
         self.vesc_id_3 = MOTOR_ID_3 
         self.vesc_id_4 = MOTOR_ID_4
 
+        # Publisher to publish received CAN messages
+        self.can_publisher_ = self.create_publisher(String, 'can_topic', 10)
+
         # Initialize CAN bus
         self.bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM1', bitrate=500000)
-
-        # Flag to control the receive thread
-        self.running = True
 
         # Start a thread for receiving CAN messages
         self.receive_thread = threading.Thread(target=self.receive_messages)
         self.receive_thread.start()
+
+         # Subscription to listen to RPM messages
+        self.subscription_ = self.create_subscription(
+            Int32MultiArray,
+            'bldc_motors/rpm',
+            self.set_rpm_callback,
+            10)
 
     def set_rpm_callback(self, msg):
         """Callback function to process received messages."""

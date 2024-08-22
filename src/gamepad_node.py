@@ -6,18 +6,11 @@ from sensor_msgs.msg import Joy
 from std_msgs.msg import Int32, Int32MultiArray
 import serial
 from std_srvs.srv import Empty
+import time
 
 class GamepadControlNode(Node):
     def __init__(self):
         super().__init__('gamepad_control_node')
-        self.subscription = self.create_subscription(
-            Joy,
-            'joy',
-            self.joy_callback,
-            10)
-        self.publisher_bldc_rpm = self.create_publisher(Int32MultiArray, 'bldc_motors/rpm', 10)
-        self.publisher_dc_motor_position = self.create_publisher(Int32, 'dc_motor_1/position', 10)
-
         self.var1 = 0
         self.var2 = 0
 
@@ -26,9 +19,20 @@ class GamepadControlNode(Node):
 
         self.prev_select_button_state = False
 
+        self.recording = False
+
         # Initialize serial port
         self.serial_port = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port and baud rate as needed
+        time.sleep(1)
 
+        self.subscription = self.create_subscription(
+            Joy,
+            'joy',
+            self.joy_callback,
+            10)
+        self.publisher_bldc_rpm = self.create_publisher(Int32MultiArray, 'bldc_motors/rpm', 10)
+        self.publisher_dc_motor_position = self.create_publisher(Int32, 'dc_motor_1/position', 10)
+   
         # Create service clients for each motor with the correct namespace
         self.clear_errors_clients = [
             self.create_client(Empty, '/dc_motor_1/clear_errors')#,
@@ -42,13 +46,11 @@ class GamepadControlNode(Node):
         # Wait for all services to become available
         for i, client in enumerate(self.clear_errors_clients):
             while not client.wait_for_service(timeout_sec=1.0):
-                self.get_logger().info(f'Waiting for clear_errors service {i+1} to become available...')
+                self.get_logger().info(f'Waiting for clear_errors service of dc motor {i+1} to become available...')
         while not self.record_dc_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for /record_dc_data service to become available...')
         while not self.record_bldc_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for /record_bldc_data service to become available...')
-        
-
 
     def scale_value(self, input_value, input_min, input_max, output_min, output_max):
         # Scale the input_value from the range [input_min, input_max] to [output_min, output_max]
@@ -80,19 +82,25 @@ class GamepadControlNode(Node):
                 self.var2 = 675
             elif self.var2 < -675:
                 self.var2 = -675
+        else:
+            self.var1 = 0
 
-        self.publisher_bldc_rpm.publish(Int32MultiArray(data=[0, 0, int(self.var1), 0]))
-        self.publisher_dc_motor_position.publish(Int32(data=int(self.var2)))
+        if self.recording is False:
+            self.get_logger().info('Recording stopped') 
+            self.publisher_bldc_rpm.publish(Int32MultiArray(data=[0, 0, int(self.var1), 0]))
+            self.publisher_dc_motor_position.publish(Int32(data=int(self.var2)))
+        else:
+            self.get_logger().info('Recording started')
 
         # Handle Start button press for serial communication
         if start_button_pressed:
             if not self.prev_start_button_state:
                 if not self.prev_motors_state:
-                    print("A")
+                    self.get_logger().info('Powering motors')
                     self.send_character('A')
                     self.prev_motors_state = True
                 else:
-                    print("B")
+                    self.get_logger().info('Disconnecting motors')
                     self.send_character('B')
                     self.prev_motors_state = False
                 self.prev_start_button_state = True
@@ -121,17 +129,17 @@ class GamepadControlNode(Node):
         # Call clear_errors service for each motor
         for i, client in enumerate(self.clear_errors_clients):
             request = Empty.Request()
-            self.get_logger().info(f'Calling clear_errors service for motor {i+1}...')
+            self.get_logger().info(f'Calling clear_errors service for dc motor {i+1}...')
             client.call_async(request)
 
     def call_record_dc_service(self):   
         request = Empty.Request()
-        self.get_logger().info(f'Calling record service')
+        self.get_logger().info(f'Calling record dc service')
         self.record_dc_client.call_async(request)
 
     def call_record_bldc_service(self):   
         request = Empty.Request()
-        self.get_logger().info(f'Calling record service')
+        self.get_logger().info(f'Calling record bldc service')
         self.record_bldc_client.call_async(request)
     
     def __del__(self):

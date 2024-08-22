@@ -21,11 +21,14 @@ class MotorStateLogger(Node):
     def __init__(self):
         super().__init__('motor_state')
         self.nombre_archivo = 'datos_motor.csv'
+        self.record_flag = False
+
         with open(self.nombre_archivo, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['Timestamp', 'Position (rad)', 'Velocity (rad/s)',  'Current (A)'])
+        
         self.pose_subscriber_ = self.create_subscription(MotorStateStamped, 'dc_motor_state', self.obtain_data,1)
-        self.record_flag = False
+        
         self.record_service = self.create_service(
             Empty,
             'record_dc_data',

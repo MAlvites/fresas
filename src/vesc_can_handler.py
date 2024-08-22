@@ -40,13 +40,6 @@ def check_motor_id(motor_id):
 class CANHandler(Node):
     def __init__(self):
         super().__init__('can_handler')
-        self.can_subscription = self.create_subscription(
-            String,
-            'can_topic',
-            self.listener_callback,
-            10
-        )
-
         # Dictionary to store publishers
         self.publishers_ = dict()
 
@@ -73,6 +66,13 @@ class CANHandler(Node):
             self.publishers_[f'{motor}_adc_2'] = self.create_publisher(Float32, f'{motor}_adc_2', 10)
             self.publishers_[f'{motor}_adc_3'] = self.create_publisher(Float32, f'{motor}_adc_3', 10)
             self.publishers_[f'{motor}_ppm'] = self.create_publisher(Float32, f'{motor}_ppm', 10)
+
+        self.can_subscription = self.create_subscription(
+            String,
+            'can_topic',
+            self.listener_callback,
+            10
+        )
 
     def listener_callback(self, msg):
         can_msg = msg.data
