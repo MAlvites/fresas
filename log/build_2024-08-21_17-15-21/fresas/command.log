@@ -1,6 +1,0 @@
-Invoking command in '/home/siba/ros2_ws/src/fresas/build/fresas': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/siba/ros2_ws/src/fresas -DCMAKE_INSTALL_PREFIX=/home/siba/ros2_ws/src/fresas/install/fresas
-Invoked command in '/home/siba/ros2_ws/src/fresas/build/fresas' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/siba/ros2_ws/src/fresas -DCMAKE_INSTALL_PREFIX=/home/siba/ros2_ws/src/fresas/install/fresas
-Invoking command in '/home/siba/ros2_ws/src/fresas/build/fresas': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/siba/ros2_ws/src/fresas/build/fresas -- -j4 -l4
-Invoked command in '/home/siba/ros2_ws/src/fresas/build/fresas' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/siba/ros2_ws/src/fresas/build/fresas -- -j4 -l4
-Invoking command in '/home/siba/ros2_ws/src/fresas/build/fresas': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/siba/ros2_ws/src/fresas/build/fresas
-Invoked command in '/home/siba/ros2_ws/src/fresas/build/fresas' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/siba/ros2_ws/src/fresas/build/fresas
