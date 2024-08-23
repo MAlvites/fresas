@@ -3,7 +3,6 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int32, Int32MultiArray
-import time
 
 class StepSignalPublisher(Node):
     def __init__(self):
@@ -14,7 +13,19 @@ class StepSignalPublisher(Node):
         self.step_value_rpm = 0
         self.step_value_position = 0
 
+        # Start with the first step signal and move to the next after 5 seconds
+        self.step_index = 0
+        self.step_signals = [
+            (2000, 400),  # Signal 1
+            (1500, 600),  # Signal 2
+            (1000, 800)   # Signal 3
+        ]
+
+        # Publishing step signals every 0.1 seconds
         self.timer = self.create_timer(0.1, self.publish_step_signals)
+
+        # Timer to change signals every 5 seconds
+        self.step_change_timer = self.create_timer(5.0, self.change_step_signal)
 
     def publish_step_signals(self):
         rpm_msg = Int32MultiArray()
@@ -27,18 +38,27 @@ class StepSignalPublisher(Node):
 
         self.get_logger().info(f"Published step signal: RPM={self.step_value_rpm}, Position={self.step_value_position}")
 
+    def change_step_signal(self):
+        if self.step_index < len(self.step_signals):
+            self.set_step_signals(*self.step_signals[self.step_index])
+            self.get_logger().info(f"Set step signal {self.step_index + 1}: RPM={self.step_signals[self.step_index][0]}, Position={self.step_signals[self.step_index][1]}")
+            self.step_index += 1
+        else:
+            self.stop_publishing()
+
     def set_step_signals(self, step_value_rpm, step_value_position):
         self.step_value_rpm = step_value_rpm
         self.step_value_position = step_value_position
 
+    def stop_publishing(self):
+        # Stop both the publishing and step change timers
+        self.timer.cancel()
+        self.step_change_timer.cancel()
+        self.get_logger().info("Stopped publishing step signals.")
+
 def main(args=None):
     rclpy.init(args=args)
     step_signal_publisher = StepSignalPublisher()
-
-    step_signal_publisher.set_step_signals(0, 600)
-    time.sleep(5)
-    step_signal_publisher.set_step_signals(0, 0)
-    time.sleep(5) # Example step values
 
     try:
         rclpy.spin(step_signal_publisher)
