@@ -40,15 +40,23 @@ class GamepadControlNode(Node):
             #self.create_client(Empty, '/dc_motor_3/clear_errors'),
             #self.create_client(Empty, '/dc_motor_4/clear_errors')
         ]
-        self.record_dc_client = self.create_client(Empty,'record_dc_data')
+        # Create four separate record_dc service clients
+        self.record_dc_clients = [
+            self.create_client(Empty, '/dc_motor_1/record_dc_data')#,
+            #self.create_client(Empty, '/dc_motor_2/record_dc_data'),
+            #self.create_client(Empty, '/dc_motor_3/record_dc_data'),
+            #self.create_client(Empty, '/dc_motor_4/record_dc_data')
+        ]
+        # Create a record_bldc service client
         self.record_bldc_client =  self.create_client(Empty,'record_bldc_data')
 
         # Wait for all services to become available
         for i, client in enumerate(self.clear_errors_clients):
             while not client.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info(f'Waiting for clear_errors service of dc motor {i+1} to become available...')
-        while not self.record_dc_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Waiting for /record_dc_data service to become available...')
+        for i, client in enumerate(self.record_dc_clients):
+            while not client.wait_for_service(timeout_sec=1.0):
+                self.get_logger().info(f'Waiting for record_dc_data service for dc motor {i+1} to become available...')
         while not self.record_bldc_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for /record_bldc_data service to become available...')
 
@@ -132,10 +140,12 @@ class GamepadControlNode(Node):
             self.get_logger().info(f'Calling clear_errors service for dc motor {i+1}...')
             client.call_async(request)
 
-    def call_record_dc_service(self):   
-        request = Empty.Request()
-        self.get_logger().info(f'Calling record dc service')
-        self.record_dc_client.call_async(request)
+    def call_record_dc_services(self):   
+        # Call record_dc_data service for each motor
+        for i, client in enumerate(self.record_dc_clients):
+            request = Empty.Request()
+            self.get_logger().info(f'Calling record_dc_data service for dc motor {i+1}...')
+            client.call_async(request)
 
     def call_record_bldc_service(self):   
         request = Empty.Request()

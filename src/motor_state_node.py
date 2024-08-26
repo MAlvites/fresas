@@ -6,7 +6,6 @@ import time
 import re
 import time
 import serial
-import argparse
 
 from sensor_msgs.msg import JointState
 from rclpy.node import Node
@@ -34,7 +33,7 @@ class MotorStateReader(Node):
 
         self.position_subscription = self.create_subscription(
             Int32,
-            '/dc_motor_1/position',
+            'position',
             self.position_callback,
             10
         )
