@@ -34,10 +34,7 @@ def generate_launch_description():
             executable='dc_motor_node.py',
             namespace='dc_motor_1',
             name='dc_motor_node',
-            output='screen',
-            parameters=[{
-                'serial_port': '/dev/ttyACM2'
-            }]
+            output='screen'
         ),
         # Node(
         #     package='fresas',
@@ -74,10 +71,7 @@ def generate_launch_description():
              executable='motor_state_node.py',
              name='motor_state_node',
              namespace='dc_motor_1',
-             output='screen',
-             parameters=[{
-                 'serial_port': '/dev/ttyACM2'
-             }]
+             output='screen'
          ),
         # Node(
         #     package='fresas',

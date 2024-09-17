@@ -28,6 +28,23 @@ MOTOR_ID_2 = 0x0357
 MOTOR_ID_3 = 0x0301 
 MOTOR_ID_4 = 0x0378
 
+import serial.tools.list_ports
+from sys import platform
+
+
+#Identifica SO, se conecta al puerto indicado
+if platform == 'linux' or platform == 'linux2':
+    def serial_ports_CAN():
+        ports = list(serial.tools.list_ports.comports())  
+        for port_no, description, address in ports:
+            if 'ACM' in description:
+                return port_no
+            if 'CAN' in description:
+                return port_no
+            if 'Serial' in description:
+                return port_no
+    print(serial_ports_CAN())
+
 class CANNode(Node):
     def __init__(self):
         super().__init__('can_node')
@@ -44,7 +61,7 @@ class CANNode(Node):
         self.can_publisher_ = self.create_publisher(String, 'can_topic', 10)
 
         # Initialize CAN bus
-        self.bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM1', bitrate=500000)
+        self.bus = can.interface.Bus(bustype='slcan', channel= serial_ports_CAN(), bitrate=500000)
 
         # Start a thread for receiving CAN messages
         self.receive_thread = threading.Thread(target=self.receive_messages)

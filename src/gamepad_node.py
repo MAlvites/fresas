@@ -8,6 +8,23 @@ import serial
 from std_srvs.srv import Empty
 import time
 
+import serial.tools.list_ports
+from sys import platform
+
+
+#Identifica SO, se conecta al puerto indicado
+if platform == 'linux' or platform == 'linux2':
+    def serial_ports_Arduino():
+        ports = list(serial.tools.list_ports.comports())  
+        for port_no, description, address in ports:
+            if 'ACM' in description:
+                return port_no
+            if 'Arduino' in description:
+                return port_no
+            if 'Serial' in description:
+                return port_no
+    print(serial_ports_Arduino())
+
 class GamepadControlNode(Node):
     def __init__(self):
         super().__init__('gamepad_control_node')
@@ -22,7 +39,7 @@ class GamepadControlNode(Node):
         self.recording = False
 
         # Initialize serial port
-        self.serial_port = serial.Serial('/dev/ttyACM0', 9600, timeout=1)  # Adjust port and baud rate as needed
+        self.serial_port = serial.Serial(serial_ports_Arduino(), 9600, timeout=1)  # Adjust port and baud rate as needed
         time.sleep(1)
 
         self.subscription = self.create_subscription(
@@ -75,9 +92,9 @@ class GamepadControlNode(Node):
 
         if R1_pressed:
             if L3_axis > 0.05:
-                self.var1 = self.scale_value(L3_axis, 0.05, 1, 800, 3000)
+                self.var1 = self.scale_value(L3_axis, 0.05, 1, 150, 2000)
             elif L3_axis < -0.05:
-                self.var1 = self.scale_value(L3_axis, -1, -0.05, -3000, -800)
+                self.var1 = self.scale_value(L3_axis, -1, -0.05, -2000, -150)
             else:
                 self.var1 = 0
 
@@ -118,7 +135,7 @@ class GamepadControlNode(Node):
         #Handle Select button press for recording of data
         if select_button_pressed:
             if not self.prev_select_button_state:
-                self.call_record_dc_service()
+                self.call_record_dc_services()
                 self.call_record_bldc_service()
                 self.prev_select_button_state = True
         else:

@@ -15,13 +15,31 @@ from std_srvs.srv import Empty
 from dc_motor_interfaces.msg import MotorState
 from dc_motor_interfaces.msg import MotorStateStamped
 
+import serial.tools.list_ports
+from sys import platform
+
+            
+            #Identifica SO, se conecta al puerto indicado
+if platform == 'linux' or platform == 'linux2':
+    def serial_ports_STM():
+        ports = list(serial.tools.list_ports.comports())  
+        for port_no, description, address in ports:
+            if 'ACM' in description:
+                return port_no
+            if 'STM' in description:
+                return port_no
+            if 'Serial' in description:
+                return port_no
+    print(serial_ports_STM())
+
+
 class MotorStateReader(Node):
 
     def __init__(self):
         super().__init__('motor_state_node') # Inicializamos el nodo
 
         # Declare parameters with default values
-        self.declare_parameter('serial_port', '/dev/ttyACM2')
+        self.declare_parameter('serial_port', serial_ports_STM())
 
         # Get the parameter value
         serial_port = self.get_parameter('serial_port').get_parameter_value().string_value

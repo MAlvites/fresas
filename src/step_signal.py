@@ -16,9 +16,9 @@ class StepSignalPublisher(Node):
         # Start with the first step signal and move to the next after 5 seconds
         self.step_index = 0
         self.step_signals = [
-            (2000, 400),  # Signal 1
-            (1500, 600),  # Signal 2
-            (1000, 800)   # Signal 3
+            (2000, 200),  # Signal 1
+            (1500, 400),  # Signal 2
+            (1000, 600)   # Signal 3
         ]
 
         # Publishing step signals every 0.1 seconds
