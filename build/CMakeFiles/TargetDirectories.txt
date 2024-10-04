@@ -1,9 +1,0 @@
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/install/strip.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/install/local.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/install.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/list_install_components.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/rebuild_cache.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/edit_cache.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/test.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/fresas_uninstall.dir
-/home/siba/ros2_ws/src/fresas/build/CMakeFiles/uninstall.dir
