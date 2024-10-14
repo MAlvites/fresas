@@ -26,7 +26,7 @@ CAN_PACKET_STATUS_6 = 28
 MOTOR_ID_1 = 0x0342
 MOTOR_ID_2 = 0x0357
 MOTOR_ID_3 = 0x0301 
-MOTOR_ID_4 = 0x0378
+MOTOR_ID_4 = 0x0372
 
 import serial.tools.list_ports
 from sys import platform
@@ -81,18 +81,18 @@ class CANNode(Node):
         rpm3 = msg.data[2].to_bytes(4, byteorder="big", signed=True)
         rpm4 = msg.data[3].to_bytes(4, byteorder="big", signed=True)
 
-        #self.bus.send(can.Message(
-        #    arbitration_id=self.vesc_id_1, data=rpm1, is_extended_id=True
-        #))
-        #self.bus.send(can.Message(
-        #    arbitration_id=self.vesc_id_2, data=rpm2, is_extended_id=True
-        #))
+        self.bus.send(can.Message(
+            arbitration_id=self.vesc_id_1, data=rpm1, is_extended_id=True
+        ))
+        self.bus.send(can.Message(
+            arbitration_id=self.vesc_id_2, data=rpm2, is_extended_id=True
+        ))
         self.bus.send(can.Message(
             arbitration_id=self.vesc_id_3, data=rpm3, is_extended_id=True
         ))
-        #self.bus.send(can.Message(
-        #    arbitration_id=self.vesc_id_4, data=rpm4, is_extended_id=True
-        #))
+        self.bus.send(can.Message(
+            arbitration_id=self.vesc_id_4, data=rpm4, is_extended_id=True
+        ))
 
     def receive_messages(self):
         """Receives messages and publishes them to a ROS topic."""
