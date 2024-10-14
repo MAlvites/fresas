@@ -20,10 +20,10 @@ CAN_PACKET_STATUS_5 = 27
 CAN_PACKET_STATUS_6 = 28
 
 motor_ids = {
-    MOTOR_ID_1: "motor_front_left",
-    MOTOR_ID_2: "motor_front_right",
-    MOTOR_ID_3: "motor_back_left",
-    MOTOR_ID_4: "motor_back_right",
+    MOTOR_ID_1: "motor_down_left",
+    MOTOR_ID_2: "motor_down_right",
+    MOTOR_ID_3: "motor_up_left",
+    MOTOR_ID_4: "motor_up_right",
 }
 
 command_ids = {
@@ -43,7 +43,7 @@ class DataCollector(Node):
         self.data_entries = []
 
         # Recording flag
-        self.record_flag = False
+        self.record_flag = True
 
         # Dynamic file name
         timestamp_str = time.strftime("%Y%m%d_%H%M%S")
@@ -128,11 +128,11 @@ class DataCollector(Node):
     def save_rpm_information(self, rpm, current_time):
         try:
             self.get_logger().info("Recording RPM setpoint data")
-            for rpm_value in rpm:
+            for i in range(4):
                 entry = {
                     'timestamp': current_time,
-                    'motor_id': "nan",
-                    'rpm_setpoint': rpm_value,
+                    'motor_id': motor_ids[list(motor_ids.keys())[i]],
+                    'rpm_setpoint': rpm[i],
                     'rpm': "nan",
                     'current': "nan",
                     'battery': "nan",
